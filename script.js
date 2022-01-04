@@ -5,8 +5,10 @@ let queries = {}
 let headers = {}
 
 async function get_req(url){
-    let resp = await fetch(url)
-    console.log(resp.status, resp.statusText);
+    try {
+        
+        let resp = await fetch(url)
+        console.log(resp.status, resp.statusText);
     if(resp.status === 200){
         let data = await resp.text();
         get('#response').innerText = data;
@@ -16,11 +18,17 @@ async function get_req(url){
         get('#response').innerText = `Some Error Occured \n Error Code: ${resp.status} \n Error Message: ${resp.statusText}`;
 
     }
+    } catch (error) {
+     console.log(error);
+        
+    }
+    
 }
 
 async function post_req(url, obj){
-    let resp = await fetch(url, obj)
-    console.log(resp.status, resp.statusText);
+    try {
+        let resp = await fetch(url, obj)
+        console.log(resp.status, resp.statusText);
     if(resp.status === 200){
         let data = await resp.text();
         get('#response').innerText = data;
@@ -30,6 +38,12 @@ async function post_req(url, obj){
         get('#response').innerText = `Some Error Occured \n Error Code: ${resp.status} \n Error Message: ${resp.statusText}`;
 
     }
+        
+    } catch (error) {
+        console.log(error); 
+        
+    }
+    
 }
 
 
@@ -40,12 +54,11 @@ function get(selector) {
 
 function send_request() {
     let url = get('#address_bar').value.replace('localhost','http://127.0.0.1')+process_queries(queries)
-    console.log(url);
     
     
 
     if(request_method.value == 'get'){
-        post_req(url)}
+        get_req(url)}
 
     else{
         let obj = {
@@ -65,7 +78,11 @@ function process_queries(){
             to_ret += `${i}=${queries[i]}&`
         }
     }
-    return '?'+to_ret.slice(0,-1)
+    if(to_ret!=''){
+
+        return '?'+to_ret.slice(0,-1)
+    }
+    return ''
 }
 function process_headers(){
     let to_ret = {}
