@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RequeStar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="main">
+
+        <header>
+            <div id="title">RequeStar</div>
+            <div id="copy">&copy; Aditya</div>
+        </header>
+
+        <div id="request_area">
+            <div id="top">
+                <div id="request_bar">
+                    <select name="" id="request_method" onchange="change_method()">
+                        <option value="get">GET</option>
+                        <option value="post">POST</option>
+                    </select>
+                    <input type="text" id="address_bar" spellcheck="false" placeholder="URL">
+                </div>
+
+                <input type="button" value="Send" id="send_request" onclick="send_request()">
+            </div>
+
+            <div id="req_nav">
+                <div id="q_nav" class="tabs" onclick="switch_tab('q')" style="border-color: rgb(255, 108, 55);">Queries
+                </div>
+                <div id="h_nav" class="tabs" onclick="switch_tab('h')" style="display: none">Headers</div>
+                <div id="b_nav" class="tabs" onclick="switch_tab('b')" style="display:none">Body</div>
+            </div>
+
+            <div class="windows" id="queries">
+                <div class="query_entry">
+                    <input type="text" class="query_name" placeholder="Query Name">
+                    <input type="text" class="query_value" placeholder="Query Value">
+                    <input type="button" class="add_query" value="ADD" onclick="add_query_entry()">
+
+                </div>
+
+                <div id="query_list">
+                    
+                </div>
+
+            </div>
+
+
+            <div class="windows" id="headers">
+
+                <div class="header_entry">
+                    <input type="text" class="header_name" placeholder="Header Name">
+                    <input type="text"class="header_value" placeholder="Header Value">
+                    <input type="button" class="add_header"value="ADD" onclick="add_header_entry();">
+                </div>
+
+
+                <div id="header_list">
+
+                </div>
+
+            </div>
+
+
+            <div class="windows" id="body">
+                <textarea name="" id="body_entry" rows="" cols="30" rows="10" spellcheck="false"
+                    placeholder="Body Content"></textarea>
+            </div>
+        </div>
+
+
+
+        <div id="response_area">
+
+            <div id="response_title" class="tabs">Response</div>
+            <div id="response">
+            </div>
+
+        </div>
+
+
+
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>
